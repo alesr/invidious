@@ -113,9 +113,19 @@ This fork includes an optimized `docker-compose.yml` configuration for ARM64 arc
 
 ```bash
 # INVIDIOUS
-export INVIDIOUS_HMAC_KEY="your-16-char-key"           # Generate with: pwgen 16 1
-export INVIDIOUS_COMPANION_KEY="your-16-char-key"      # Generate with: pwgen 16 1
+export INVIDIOUS_HMAC_KEY="your-16-char-key"           # See below for generation
+export INVIDIOUS_COMPANION_KEY="your-16-char-key"      # See below for generation
 export INVIDIOUS_DB_PASSWORD="your-secure-password"
+```
+
+**Generate secure random keys:**
+
+```bash
+# On macOS
+LC_ALL=C tr -dc 'A-Za-z0-9' </dev/urandom | head -c 16; echo
+
+# On Linux (if pwgen is installed)
+pwgen 16 1
 ```
 
 2. **Start the services**:
@@ -144,7 +154,7 @@ docker compose up -d
 | `INVIDIOUS_COMPANION_KEY` | Companion API key (16 chars) | `WalAmIoep3WWGGlj` |
 | `INVIDIOUS_DB_PASSWORD` | PostgreSQL password | `kemal` |
 
-**Note**: Generate secure random keys using `pwgen 16 1` or similar tools.
+**Note**: Use the commands shown above to generate secure random 16-character keys.
 
 
 ## Documentation
