@@ -103,6 +103,49 @@
 
 - [Follow the installation instructions](https://docs.invidious.io/installation/)
 
+## ARM64 Setup (Apple Silicon / AArch64)
+
+This fork includes an optimized `docker-compose.yml` configuration for ARM64 architecture with enhanced features.
+
+### Quick Start
+
+1. **Set up environment variables** in your shell config (e.g., `~/.config/fish/config.fish` or `~/.bashrc`):
+
+```bash
+# INVIDIOUS
+export INVIDIOUS_HMAC_KEY="your-16-char-key"           # Generate with: pwgen 16 1
+export INVIDIOUS_COMPANION_KEY="your-16-char-key"      # Generate with: pwgen 16 1
+export INVIDIOUS_DB_PASSWORD="your-secure-password"
+```
+
+2. **Start the services**:
+
+```bash
+docker compose up -d
+```
+
+3. **Access Invidious** at http://127.0.0.1:3000
+
+### Features in this Configuration
+
+- ✅ **ARM64 Support**: Uses `latest-arm64` image for Apple Silicon compatibility
+- ✅ **Invidious Companion**: Enhanced video streaming and quality options
+- ✅ **Environment Variables**: Secrets managed via environment variables (no hardcoded values)
+- ✅ **Registration Enabled**: User registration with captcha disabled for better UX
+- ✅ **Best Video Quality**: Default DASH quality set to "best" for maximum resolution
+- ✅ **Security Hardening**: Proper logging, capability dropping, and read-only containers
+- ✅ **Persistent Storage**: PostgreSQL data and companion cache persisted via volumes
+
+### Environment Variables Reference
+
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `INVIDIOUS_HMAC_KEY` | HMAC key for security (16 chars) | `9BZ43twOhDe1YDF4` |
+| `INVIDIOUS_COMPANION_KEY` | Companion API key (16 chars) | `WalAmIoep3WWGGlj` |
+| `INVIDIOUS_DB_PASSWORD` | PostgreSQL password | `kemal` |
+
+**Note**: Generate secure random keys using `pwgen 16 1` or similar tools.
+
 
 ## Documentation
 
